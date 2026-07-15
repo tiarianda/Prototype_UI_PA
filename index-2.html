@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRIME Mobile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,0,0" />
+<style>
+  :root{
+    --green-900:#0B3D22;
+    --green-800:#12472A;
+    --green-700:#1B5E36;
+    --green-600:#1E6E3E;
+    --green-500:#2E8B4F;
+    --mint-100:#E8F7EE;
+    --mint-050:#F3FBF6;
+    --bg:#F2F4F3;
+    --card:#FFFFFF;
+    --ink-900:#16211A;
+    --ink-700:#3D4A42;
+    --ink-500:#78837B;
+    --ink-300:#B3BBB6;
+    --line:#E5E9E6;
+    --field:#F1F3F1;
+    --amber:#FFB020;
+    --amber-bg:#FFF4E0;
+    --orange-bg:#FDEEE1;
+    --orange-ic:#D97B29;
+    --blue-bg:#E7EFFB;
+    --blue-ic:#3C6FCC;
+    --shadow-sm: 0 1px 2px rgba(20,35,28,0.06);
+    --shadow-md: 0 8px 24px rgba(11,61,34,0.10);
+    --shadow-lg: 0 16px 40px rgba(11,61,34,0.20);
+    --radius-lg: 22px;
+    --radius-md: 16px;
+    --radius-sm: 12px;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:#1c2622;
+    font-family:'Inter',sans-serif;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    min-height:100vh;
+    padding:28px 12px;
+  }
+  .device{
+    width:390px;
+    height:844px;
+    background:var(--bg);
+    border-radius:44px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 30px 80px rgba(0,0,0,0.55), 0 0 0 10px #0c1210, 0 0 0 11px #333;
+  }
+  .statusbar{
+    height:46px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 26px;
+    font-size:13px;
+    font-weight:700;
+    color:#fff;
+    background:linear-gradient(180deg,#2E8B4F,#1E6E3E);
+    position:relative;
+    z-index:30;
+  }
+  .statusbar .icons{display:flex;gap:5px;align-items:center;}
+  .statusbar .icons .material-symbols-rounded{font-size:16px;}
+
+  /* ================= LOGIN ================= */
+  .login-screen{
+    position:absolute; top:46px; left:0; right:0; bottom:0;
+    background:var(--bg);
+    overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .login-circle{
+    position:absolute;
+    border-radius:50%;
+  }
+  .lc1{ width:340px; height:340px; border:1px solid #dfe6e1; top:120px; left:-70px; }
+  .lc2{ width:230px; height:230px; background:#E9ECEA; top:230px; left:-90px; }
+  .lc3{ width:260px; height:260px; background:#EDF0EE; bottom:60px; right:-90px; }
+  .login-card{
+    position:relative; z-index:2;
+    width:250px;
+    background:var(--card);
+    border-radius:14px;
+    box-shadow:var(--shadow-lg);
+    padding:26px 22px 22px;
+  }
+  .login-logo{ text-align:center; margin-bottom:18px; }
+  .login-target{
+    width:20px; height:20px;
+    margin:0 auto 6px;
+    border-radius:50%;
+    border:2.5px solid var(--amber);
+    position:relative;
+  }
+  .login-target::after{
+    content:"";
+    position:absolute; inset:5px;
+    background:var(--green-600);
+    border-radius:50%;
+  }
+  .login-wordmark{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:800;
+    font-size:26px;
+    letter-spacing:0.5px;
+    color:var(--green-700);
+    line-height:1;
+  }
+  .login-tagline{
+    font-size:8.5px;
+    font-weight:700;
+    color:var(--ink-700);
+    letter-spacing:0.3px;
+    margin-top:4px;
+  }
+  .login-field{
+    display:flex; align-items:center; gap:8px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:11px 12px;
+    margin-top:12px;
+  }
+  .login-field .material-symbols-rounded{font-size:17px; color:var(--ink-500);}
+  .login-field input{
+    border:none; outline:none; flex:1; font-size:12.5px; font-family:'Inter',sans-serif; color:var(--ink-900); background:transparent;
+  }
+  .login-field input::placeholder{color:var(--ink-300);}
+  .login-field .toggle-eye{cursor:pointer;}
+  .btn-masuk{
+    width:100%; margin-top:16px;
+    background:var(--green-600);
+    color:#fff; border:none; padding:11px;
+    border-radius:8px; font-size:11.5px; font-weight:800; letter-spacing:0.5px;
+    cursor:pointer;
+  }
+  .btn-lupa{
+    width:100%; margin-top:8px;
+    background:#fff; color:var(--green-600); border:1px solid var(--green-600);
+    padding:10px; border-radius:8px; font-size:10.5px; font-weight:800; letter-spacing:0.5px;
+    cursor:pointer;
+  }
+
+  /* ================= APP CHROME ================= */
+  .app-bar{
+    height:52px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 16px;
+    border-bottom:1px solid var(--line);
+    position:relative; z-index:12;
+  }
+  .hamburger-btn{
+    background:none; border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink-700);
+  }
+  .app-bar-logo{ display:flex; flex-direction:column; align-items:flex-start; }
+  .app-bar-logo .name{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:800; font-size:15px; color:var(--green-700); letter-spacing:0.3px; line-height:1;
+  }
+  .app-bar-logo .tag{ font-size:6.5px; color:var(--ink-500); font-weight:700; letter-spacing:0.3px; margin-top:2px;}
+  .profile-btn{
+    width:30px; height:30px; border-radius:50%;
+    background:var(--mint-100);
+    display:flex; align-items:center; justify-content:center;
+    border:none; cursor:pointer; color:var(--green-700);
+    position:relative;
+  }
+  .profile-btn .material-symbols-rounded{font-size:18px;}
+  .profile-pop{
+    position:absolute; top:46px; right:16px;
+    background:#fff; border-radius:12px; box-shadow:var(--shadow-md);
+    padding:12px 16px; z-index:20; min-width:150px;
+    border:1px solid var(--line);
+  }
+  .profile-pop .p-name{ font-weight:800; font-size:12.5px; color:var(--ink-900);}
+  .profile-pop .p-role{ font-size:10px; color:var(--ink-500); margin-top:2px;}
+  .profile-pop hr{ border:none; border-top:1px solid var(--line); margin:9px 0;}
+  .profile-pop .p-logout{ font-size:11px; font-weight:700; color:#C0392B; display:flex; align-items:center; gap:6px; cursor:pointer;}
+  .profile-pop .p-logout .material-symbols-rounded{font-size:15px;}
+
+  .screen{
+    position:absolute;
+    top:98px; left:0; right:0; bottom:78px;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .screen.full-top{ top:46px; }
+  .screen::-webkit-scrollbar{display:none;}
+
+  /* ================= DRAWER ================= */
+  .drawer-overlay{
+    position:absolute; top:0; left:0; right:0; bottom:0;
+    background:rgba(10,20,15,0.45);
+    z-index:40;
+    opacity:0; pointer-events:none;
+    transition:opacity .25s ease;
+  }
+  .drawer-overlay.open{ opacity:1; pointer-events:auto; }
+  .drawer{
+    position:absolute; top:0; bottom:0; left:0;
+    width:250px;
+    background:#fff;
+    z-index:41;
+    transform:translateX(-100%);
+    transition:transform .28s cubic-bezier(.4,0,.2,1);
+    overflow-y:auto;
+    box-shadow:8px 0 30px rgba(0,0,0,0.15);
+  }
+  .drawer.open{ transform:translateX(0); }
+  .drawer-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 16px 14px;
+    border-bottom:1px solid var(--line);
+  }
+  .drawer-head .app-bar-logo .name{ font-size:16px; }
+  .drawer-list{ padding:6px 0; }
+  .drawer-item{
+    display:flex; align-items:center; gap:12px;
+    padding:11px 16px;
+    font-size:12px; font-weight:600; color:var(--ink-700);
+    cursor:pointer;
+    border-left:3px solid transparent;
+  }
+  .drawer-item .material-symbols-rounded{ font-size:18px; color:var(--ink-500); }
+  .drawer-item .chev{ margin-left:auto; font-size:16px; color:var(--ink-300); }
+  .drawer-item.active{ color:var(--green-600); background:var(--mint-050); border-left-color:var(--green-600); }
+  .drawer-item.active .material-symbols-rounded{ color:var(--green-600); }
+
+  .toast{
+    position:absolute; left:50%; bottom:100px; transform:translate(-50%,20px);
+    background:var(--ink-900); color:#fff; font-size:11px; font-weight:600;
+    padding:10px 16px; border-radius:10px; z-index:60;
+    opacity:0; pointer-events:none; transition:all .25s ease;
+    white-space:nowrap;
+  }
+  .toast.show{ opacity:1; transform:translate(-50%,0); }
+
+  /* ================= TUGASKU / DASHBOARD ================= */
+  .tugasku-head{ padding:18px 18px 4px; }
+  .tugasku-title{ font-family:'Plus Jakarta Sans',sans-serif; font-size:18px; font-weight:800; color:var(--ink-900); }
+  .tugasku-sub{ font-size:11px; color:var(--ink-500); margin-top:5px; line-height:1.5; }
+
+  .task-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    padding:16px 18px 30px;
+  }
+  .task-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius-md);
+    box-shadow:var(--shadow-sm);
+    padding:14px;
+    min-height:88px;
+    position:relative;
+  }
+  .task-card .t-title{ font-size:11px; font-weight:700; color:var(--ink-900); line-height:1.35; max-width:75%; }
+  .task-card .t-count{ font-size:22px; font-weight:800; color:var(--ink-900); margin-top:12px; }
+  .task-icon{
+    position:absolute; right:12px; bottom:12px;
+    width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .task-icon.tone-green{ background:var(--mint-100); color:var(--green-600); }
+  .task-icon.tone-orange{ background:var(--orange-bg); color:var(--orange-ic); }
+  .task-icon.tone-blue{ background:var(--blue-bg); color:var(--blue-ic); }
+  .task-icon .material-symbols-rounded{ font-size:17px; }
+
+  /* ================= GENERIC PLACEHOLDER PAGES ================= */
+  .placeholder-page{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:70px 30px; color:var(--ink-500); min-height:100%;
+  }
+  .placeholder-page .material-symbols-rounded{ font-size:44px; color:var(--ink-300); margin-bottom:12px; }
+  .placeholder-page .pp-title{ font-size:14px; font-weight:800; color:var(--ink-700); margin-bottom:6px; font-family:'Plus Jakarta Sans',sans-serif; }
+  .placeholder-page .pp-desc{ font-size:11.5px; line-height:1.6; }
+
+  /* ================= BOTTOM NAV ================= */
+  .bottom-nav{
+    position:absolute; bottom:0; left:0; right:0; height:78px;
+    background:#fff; border-top:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-around;
+    padding-bottom:14px; z-index:10;
+    box-shadow:0 -6px 20px rgba(0,0,0,0.05);
+  }
+  .nav-item{
+    display:flex; flex-direction:column; align-items:center; gap:3px; flex:1;
+    background:none; border:none; cursor:pointer; padding:6px 0 0;
+  }
+  .nav-item .material-symbols-rounded{ font-size:22px; color:var(--ink-300); transition:color .2s ease; }
+  .nav-item .n-label{ font-size:9.5px; color:var(--ink-300); font-weight:600; transition:color .2s ease; }
+  .nav-item.active .material-symbols-rounded, .nav-item.active .n-label{ color:var(--green-600); }
+  .nav-item.active .material-symbols-rounded{ font-variation-settings:'FILL' 1,'wght' 600; }
+
+  .nav-center{ flex:1; display:flex; justify-content:center; position:relative; }
+  .nav-center-btn{
+    position:absolute; top:-30px; width:60px; height:60px; border-radius:50%;
+    background:linear-gradient(150deg,var(--green-500),var(--green-800));
+    display:flex; align-items:center; justify-content:center; flex-direction:column;
+    box-shadow:0 10px 22px rgba(11,61,34,0.45), 0 0 0 6px var(--bg);
+    border:none; cursor:pointer; transition:transform .15s ease;
+  }
+  .nav-center-btn:active{ transform:scale(0.94); }
+  .nav-center-btn .material-symbols-rounded{ color:#fff; font-size:25px; }
+  .nav-center .n-label{ position:absolute; top:32px; font-size:9.5px; font-weight:700; color:var(--ink-300); white-space:nowrap; }
+  .nav-center.active .n-label{ color:var(--green-600); }
+
+  /* ================= SIMIKRO FLOW ================= */
+  .mikro-header{
+    display:flex; align-items:center; gap:12px;
+    padding:16px 18px;
+  }
+  .back-circle{
+    width:34px; height:34px; border-radius:50%;
+    border:1.5px solid var(--green-700);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--green-700); background:#fff; cursor:pointer; flex-shrink:0;
+  }
+  .back-circle .material-symbols-rounded{ font-size:18px; }
+  .mikro-title{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:16px; font-weight:800; color:var(--ink-900);
+  }
+  .mikro-body{ padding:6px 18px 30px; }
+  .mikro-btn{
+    width:100%;
+    background:linear-gradient(160deg,var(--green-700),var(--green-900));
+    color:#fff; border:none; border-radius:16px;
+    padding:20px; margin-bottom:14px;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:14px; font-weight:800; letter-spacing:0.4px;
+    text-align:center; cursor:pointer;
+    box-shadow:0 8px 18px rgba(11,61,34,0.28);
+    transition:transform .12s ease;
+  }
+  .mikro-btn:active{ transform:scale(0.98); }
+  .mikro-btn .mb-sub{ display:block; font-size:9.5px; font-weight:600; opacity:0.75; margin-top:4px; letter-spacing:0.2px; }
+
+  .mikro-form-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius-md);
+    box-shadow:var(--shadow-sm); padding:18px;
+  }
+  .mikro-form-card label{ display:block; font-size:11.5px; font-weight:700; color:var(--ink-700); margin-bottom:8px; }
+  .amount-wrap{ position:relative; }
+  .amount-wrap .prefix{ position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:13px; font-weight:700; color:var(--ink-500); }
+  .num-input{
+    width:100%; background:var(--field); border:1.5px solid var(--line); border-radius:var(--radius-sm);
+    padding:13px 14px 13px 38px; font-size:14px; font-weight:700; color:var(--ink-900); font-family:'Inter',sans-serif;
+  }
+  .num-input:focus{ outline:2px solid var(--green-500); outline-offset:1px; }
+  .helper-text{ font-size:10px; color:var(--ink-500); margin-top:7px; }
+  .btn-submit{
+    width:100%; margin-top:20px;
+    background:linear-gradient(160deg,var(--green-700),var(--green-900));
+    color:#fff; border:none; padding:15px; border-radius:var(--radius-sm);
+    font-size:13px; font-weight:800; letter-spacing:0.5px; cursor:pointer;
+    box-shadow:0 8px 18px rgba(11,61,34,0.28);
+  }
+
+  .mikro-result-box{
+    border:1.5px solid var(--ink-900); border-radius:14px;
+    padding:12px 14px; text-align:center;
+    font-size:13px; font-weight:800; color:var(--ink-900);
+    margin-bottom:18px;
+  }
+  .result-block-title{
+    text-align:center; font-size:12.5px; font-weight:800; color:var(--ink-900);
+    letter-spacing:0.6px; margin:18px 0 8px;
+  }
+  table.rtable{ width:100%; border-collapse:collapse; font-size:11px; }
+  table.rtable th{
+    background:var(--green-800); color:#fff; font-weight:700; padding:8px 6px; font-size:10.5px;
+  }
+  table.rtable td{
+    padding:7px 6px; text-align:center; border:1px solid var(--line); font-weight:600; color:var(--ink-900);
+  }
+  table.rtable tr:nth-child(odd) td.jw{ background:var(--mint-100); font-weight:800; }
+  table.rtable tr:nth-child(even) td.jw{ background:var(--mint-050); font-weight:800; }
+  table.rtable td.dash{ color:var(--ink-300); background:repeating-linear-gradient(135deg,#f2f2f2,#f2f2f2 4px,#e9e9e9 4px,#e9e9e9 8px); }
+
+  .disclaimer{
+    margin-top:20px; display:flex; gap:9px; background:var(--amber-bg); border-radius:var(--radius-sm); padding:12px 13px;
+  }
+  .disclaimer .material-symbols-rounded{ color:#8A5A00; font-size:17px; flex-shrink:0; }
+  .disclaimer p{ font-size:10.5px; color:#7A5200; line-height:1.5; margin:0; }
+
+  .fade-in{ animation:fadeUp .3s ease; }
+  @keyframes fadeUp{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+
+  .hidden{ display:none !important; }
+</style>
+</head>
+<body>
+
+<div class="device">
+  <div class="statusbar">
+    <span>8:29</span>
+    <div class="icons">
+      <span class="material-symbols-rounded">signal_cellular_alt</span>
+      <span class="material-symbols-rounded">wifi</span>
+      <span class="material-symbols-rounded">battery_full</span>
+    </div>
+  </div>
+
+  <!-- ================= LOGIN SCREEN ================= -->
+  <div class="login-screen" id="screen-login">
+    <div class="login-circle lc1"></div>
+    <div class="login-circle lc2"></div>
+    <div class="login-circle lc3"></div>
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="login-target"></div>
+        <div class="login-wordmark">PRIME</div>
+        <div class="login-tagline">Pegadaian Origination Machine</div>
+      </div>
+      <div class="login-field">
+        <span class="material-symbols-rounded">person</span>
+        <input type="text" placeholder="NIK" value="30012345">
+      </div>
+      <div class="login-field">
+        <span class="material-symbols-rounded">lock</span>
+        <input type="password" placeholder="Kata Sandi" value="••••••••" id="pw-input">
+        <span class="material-symbols-rounded toggle-eye" onclick="togglePw()" id="pw-eye">visibility</span>
+      </div>
+      <button class="btn-masuk" onclick="doLogin()">MASUK</button>
+      <button class="btn-lupa">LUPA KATA SANDI ?</button>
+    </div>
+  </div>
+
+  <!-- ================= APP BAR (shown after login, non-simikro screens) ================= -->
+  <div class="app-bar hidden" id="app-bar">
+    <button class="hamburger-btn" onclick="toggleDrawer()">
+      <span class="material-symbols-rounded">menu</span>
+    </button>
+    <div class="app-bar-logo">
+      <div class="name">PRIME</div>
+      <div class="tag">PEGADAIAN ORIGINATION MACHINE</div>
+    </div>
+    <button class="profile-btn" onclick="toggleProfile()">
+      <span class="material-symbols-rounded">person</span>
+    </button>
+  </div>
+  <div class="profile-pop hidden" id="profile-pop">
+    <div class="p-name">Tia Rianda</div>
+    <div class="p-role">Account Officer</div>
+    <hr>
+    <div class="p-logout" onclick="doLogout()"><span class="material-symbols-rounded">logout</span>Keluar</div>
+  </div>
+
+  <!-- ================= DRAWER ================= -->
+  <div class="drawer-overlay hidden" id="drawer-overlay" onclick="toggleDrawer()"></div>
+  <div class="drawer" id="drawer">
+    <div class="drawer-head">
+      <div class="app-bar-logo">
+        <div class="name">PRIME</div>
+        <div class="tag">PEGADAIAN ORIGINATION MACHINE</div>
+      </div>
+      <span class="material-symbols-rounded" style="cursor:pointer;color:var(--ink-500);" onclick="toggleDrawer()">close</span>
+    </div>
+    <div class="drawer-list">
+      <div class="drawer-item active" onclick="drawerNav('dashboard')"><span class="material-symbols-rounded">assignment</span>Tugasku</div>
+      <div class="drawer-item" onclick="drawerNav('dashboard')"><span class="material-symbols-rounded">dashboard</span>Dashboard<span class="material-symbols-rounded chev">expand_more</span></div>
+      <div class="drawer-item" onclick="drawerToast()"><span class="material-symbols-rounded">insights</span>Dashboard Kinerja<span class="material-symbols-rounded chev">expand_more</span></div>
+      <div class="drawer-item" onclick="drawerToast()"><span class="material-symbols-rounded">fact_check</span>Pra Kredit<span class="material-symbols-rounded chev">expand_more</span></div>
+      <div class="drawer-item" onclick="drawerToast()"><span class="material-symbols-rounded">verified_user</span>SIKP<span class="material-symbols-rounded chev">expand_more</span></div>
+      <div class="drawer-item" onclick="drawerToast()"><span class="material-symbols-rounded">query_stats</span>PEFINDO<span class="material-symbols-rounded chev">expand_more</span></div>
+      <div class="drawer-item" onclick="drawerToast()"><span class="material-symbols-rounded">key</span>Change Password</div>
+      <div class="drawer-item" onclick="drawerToast()"><span class="material-symbols-rounded">lock_open</span>Unlock NPL<span class="material-symbols-rounded chev">expand_more</span></div>
+      <div class="drawer-item" onclick="drawerNav('laporan')"><span class="material-symbols-rounded">bar_chart</span>Laporan<span class="material-symbols-rounded chev">expand_more</span></div>
+      <div class="drawer-item" onclick="drawerToast()"><span class="material-symbols-rounded">handshake</span>Pembinaan Kredit<span class="material-symbols-rounded chev">expand_more</span></div>
+      <div class="drawer-item" onclick="drawerToast()"><span class="material-symbols-rounded">shield</span>Asuransi</div>
+      <div class="drawer-item" onclick="drawerToast()"><span class="material-symbols-rounded">inventory_2</span>Rapindo Asset Regis...<span class="material-symbols-rounded chev">expand_more</span></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Fitur belum tersedia di prototipe ini.</div>
+
+  <!-- ================= SCREEN: DASHBOARD / TUGASKU ================= -->
+  <div class="screen hidden" id="screen-dashboard">
+    <div class="tugasku-head">
+      <div class="tugasku-title">Tugasku</div>
+      <div class="tugasku-sub">Ini Daftar Tugasku Yang Masih Dalam Proses Atau Belum Disubmit</div>
+    </div>
+    <div class="task-grid">
+      <div class="task-card"><div class="t-title">Persetujuan Unlock NPL</div><div class="task-icon tone-green"><span class="material-symbols-rounded">task_alt</span></div></div>
+      <div class="task-card"><div class="t-title">Inquiry Unlock NPL</div><div class="task-icon tone-green"><span class="material-symbols-rounded">task_alt</span></div></div>
+      <div class="task-card"><div class="t-title">Daftar Survey</div><div class="t-count">0</div><div class="task-icon tone-orange"><span class="material-symbols-rounded">hourglass_top</span></div></div>
+      <div class="task-card"><div class="t-title">Proses Survey</div><div class="t-count">3</div><div class="task-icon tone-orange"><span class="material-symbols-rounded">hourglass_top</span></div></div>
+      <div class="task-card"><div class="t-title">Konfirmasi</div><div class="t-count">0</div><div class="task-icon tone-green"><span class="material-symbols-rounded">forum</span></div></div>
+      <div class="task-card"><div class="t-title">Daftar Pengajuan</div><div class="t-count">25</div><div class="task-icon tone-blue"><span class="material-symbols-rounded">description</span></div></div>
+      <div class="task-card"><div class="t-title">Daftar Prospek</div><div class="t-count">2097</div><div class="task-icon tone-blue"><span class="material-symbols-rounded">description</span></div></div>
+      <div class="task-card"><div class="t-title">Proses Survey Top Up</div><div class="t-count">0</div><div class="task-icon tone-orange"><span class="material-symbols-rounded">north_east</span></div></div>
+      <div class="task-card"><div class="t-title">Proses Survey Repeat Order</div><div class="t-count">0</div><div class="task-icon tone-orange"><span class="material-symbols-rounded">autorenew</span></div></div>
+      <div class="task-card"><div class="t-title">Underlying Prime</div><div class="t-count">3</div><div class="task-icon tone-green"><span class="material-symbols-rounded">task_alt</span></div></div>
+      <div class="task-card"><div class="t-title">Underlying Non Prime</div><div class="t-count">0</div><div class="task-icon tone-green"><span class="material-symbols-rounded">task_alt</span></div></div>
+    </div>
+  </div>
+
+  <!-- ================= SCREEN: PINJAMAN ================= -->
+  <div class="screen hidden" id="screen-pinjaman">
+    <div class="placeholder-page">
+      <span class="material-symbols-rounded">folder_open</span>
+      <div class="pp-title">Daftar Pinjaman Nasabah</div>
+      <div class="pp-desc">Kelola pengajuan, status pencairan, dan riwayat pinjaman nasabah Anda di sini.</div>
+    </div>
+  </div>
+
+  <!-- ================= SCREEN: SIMIKRO ================= -->
+  <div class="screen full-top hidden" id="screen-simikro">
+
+    <!-- Step 1: pilih produk -->
+    <div id="mikro-step-list">
+      <div class="mikro-header">
+        <div class="back-circle" onclick="goTo('dashboard')"><span class="material-symbols-rounded">arrow_back</span></div>
+        <div class="mikro-title">SiMikro - Simulasi Mikro</div>
+      </div>
+      <div class="mikro-body">
+        <button class="mikro-btn" onclick="selectProduk('kreasi')">KREASI</button>
+        <button class="mikro-btn" onclick="selectProduk('kur')">KUR</button>
+        <button class="mikro-btn" onclick="selectProduk('kupedes')">KUPEDES</button>
+        <button class="mikro-btn" onclick="selectProduk('amanah')">AMANAH</button>
+      </div>
+    </div>
+
+    <!-- Step 2: sub produk kreasi -->
+    <div id="mikro-step-kreasi-sub" class="hidden">
+      <div class="mikro-header">
+        <div class="back-circle" onclick="mikroShow('mikro-step-list')"><span class="material-symbols-rounded">arrow_back</span></div>
+        <div class="mikro-title">KREASI</div>
+      </div>
+      <div class="mikro-body">
+        <button class="mikro-btn" onclick="selectSub('kreasi_umi','KREASI UMi')">KREASI<span class="mb-sub">UMi</span></button>
+        <button class="mikro-btn" onclick="selectSub('kreasi_reguler','KREASI REGULER')">KREASI<span class="mb-sub">REGULER</span></button>
+        <button class="mikro-btn" onclick="selectSub('kreasi_multiguna','KREASI MULTIGUNA')">KREASI<span class="mb-sub">MULTIGUNA</span></button>
+      </div>
+    </div>
+
+    <!-- Step 3: form nominal -->
+    <div id="mikro-step-form" class="hidden">
+      <div class="mikro-header">
+        <div class="back-circle" onclick="mikroBackFromForm()"><span class="material-symbols-rounded">arrow_back</span></div>
+        <div class="mikro-title" id="form-title">KREASI UMi</div>
+      </div>
+      <div class="mikro-body">
+        <div class="mikro-form-card">
+          <label id="form-label">Uang Pinjaman</label>
+          <div class="amount-wrap">
+            <span class="prefix">Rp</span>
+            <input type="text" inputmode="numeric" class="num-input" id="nominal" placeholder="0" oninput="formatNominal(this)">
+          </div>
+          <div class="helper-text" id="form-helper">Masukkan nominal pinjaman yang diinginkan</div>
+          <button class="btn-submit" onclick="submitSimulasi()">SUBMIT</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3b: form khusus AMANAH -->
+    <div id="mikro-step-form-amanah" class="hidden">
+      <div class="mikro-header">
+        <div class="back-circle" onclick="mikroShow('mikro-step-list')"><span class="material-symbols-rounded">arrow_back</span></div>
+        <div class="mikro-title">AMANAH</div>
+      </div>
+      <div class="mikro-body">
+        <div class="mikro-form-card">
+          <label>Harga Kendaraan</label>
+          <div class="amount-wrap">
+            <span class="prefix">Rp</span>
+            <input type="text" inputmode="numeric" class="num-input" id="harga-kendaraan" placeholder="0" oninput="formatNominal(this); syncMarhunPreview();">
+          </div>
+          <div class="helper-text">Masukkan harga kendaraan (motor/mobil) yang diajukan</div>
+
+          <label style="margin-top:16px;">Uang Muka</label>
+          <div class="amount-wrap">
+            <span class="prefix">Rp</span>
+            <input type="text" inputmode="numeric" class="num-input" id="uang-muka" placeholder="0" oninput="formatNominal(this); syncMarhunPreview();">
+          </div>
+          <div class="helper-text" id="marhun-preview">Marhun Bih (UP): Rp 0</div>
+
+          <button class="btn-submit" onclick="submitAmanah()">SUBMIT</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: hasil -->
+    <div id="mikro-step-result" class="hidden">
+      <div class="mikro-header">
+        <div class="back-circle" onclick="mikroBackFromResult()"><span class="material-symbols-rounded">arrow_back</span></div>
+        <div class="mikro-title" id="result-title">KREASI UMi</div>
+      </div>
+
+      <!-- generic result (KREASI / KUR / KUPEDES) -->
+      <div class="mikro-body fade-in" id="result-generic">
+        <span class="badge-estimasi" style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:#8A5A00;font-size:9.5px;font-weight:800;padding:4px 9px;border-radius:20px;letter-spacing:0.4px;margin-bottom:10px;">
+          <span class="material-symbols-rounded" style="font-size:13px;">info</span>Estimasi
+        </span>
+        <div class="mikro-result-box" id="result-nominal-box">Uang Pinjaman : Rp 0,-</div>
+
+        <div class="result-block-title">BULANAN</div>
+        <table class="rtable" id="table-bulanan"></table>
+
+        <div class="result-block-title">SEKALI BAYAR</div>
+        <table class="rtable" id="table-sekali"></table>
+
+        <div class="result-block-title">ANGSURAN BERJANGKA</div>
+        <table class="rtable" id="table-berjangka"></table>
+
+        <div class="disclaimer">
+          <span class="material-symbols-rounded">warning</span>
+          <p>Hasil simulasi bersifat estimasi dan dapat berbeda dengan keputusan akhir. Angsuran final ditentukan setelah proses verifikasi dan persetujuan kredit.</p>
+        </div>
+      </div>
+
+      <!-- AMANAH-specific result -->
+      <div class="mikro-body fade-in hidden" id="result-amanah">
+        <span class="badge-estimasi" style="display:inline-flex;align-items:center;gap:4px;background:var(--amber-bg);color:#8A5A00;font-size:9.5px;font-weight:800;padding:4px 9px;border-radius:20px;letter-spacing:0.4px;margin-bottom:10px;">
+          <span class="material-symbols-rounded" style="font-size:13px;">info</span>Estimasi
+        </span>
+        <div class="mikro-result-box" id="am-harga-box">Harga Kendaraan : Rp 0,-</div>
+        <div class="mikro-result-box" id="am-dp-box">Uang Muka : Rp 0,-</div>
+        <div class="mikro-result-box" id="am-marhun-box">Marhun Bih (UP) : Rp 0,-</div>
+
+        <div class="result-block-title">SIMULASI ANGSURAN</div>
+        <table class="rtable" id="table-amanah"></table>
+
+        <div class="disclaimer">
+          <span class="material-symbols-rounded">warning</span>
+          <p>Hasil simulasi bersifat estimasi berdasarkan asumsi tarif mu'nah dan diskon rata-rata, dapat berbeda dengan keputusan akhir. Angsuran final ditentukan setelah proses verifikasi, penilaian kendaraan, dan persetujuan pembiayaan.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= SCREEN: LAPORAN ================= -->
+  <div class="screen hidden" id="screen-laporan">
+    <div class="placeholder-page">
+      <span class="material-symbols-rounded">insights</span>
+      <div class="pp-title">Laporan Kinerja</div>
+      <div class="pp-desc">Pantau dashboard kinerja, daftar pinjaman syariah, dan laporan lainnya di sini.</div>
+    </div>
+  </div>
+
+  <!-- ================= SCREEN: AKUN ================= -->
+  <div class="screen hidden" id="screen-akun">
+    <div class="placeholder-page">
+      <span class="material-symbols-rounded">account_circle</span>
+      <div class="pp-title">Tia Rianda</div>
+      <div class="pp-desc">Account Officer • Pengaturan profil, ubah kata sandi, dan preferensi aplikasi.</div>
+    </div>
+  </div>
+
+  <!-- ================= BOTTOM NAV ================= -->
+  <div class="bottom-nav hidden" id="bottom-nav">
+    <button class="nav-item active" data-nav="dashboard" onclick="goTo('dashboard')">
+      <span class="material-symbols-rounded">home</span>
+      <span class="n-label">Dashboard</span>
+    </button>
+    <button class="nav-item" data-nav="pinjaman" onclick="goTo('pinjaman')">
+      <span class="material-symbols-rounded">payments</span>
+      <span class="n-label">Pinjaman</span>
+    </button>
+    <div class="nav-center" data-nav="simikro">
+      <button class="nav-center-btn" onclick="goTo('simikro')">
+        <span class="material-symbols-rounded">calculate</span>
+      </button>
+      <span class="n-label">SiMikro</span>
+    </div>
+    <button class="nav-item" data-nav="laporan" onclick="goTo('laporan')">
+      <span class="material-symbols-rounded">bar_chart</span>
+      <span class="n-label">Laporan</span>
+    </button>
+    <button class="nav-item" data-nav="akun" onclick="goTo('akun')">
+      <span class="material-symbols-rounded">person</span>
+      <span class="n-label">Akun</span>
+    </button>
+  </div>
+
+</div>
+
+<script>
+  /* ---------- LOGIN ---------- */
+  function togglePw(){
+    const inp = document.getElementById('pw-input');
+    const eye = document.getElementById('pw-eye');
+    if(inp.type === 'password'){ inp.type = 'text'; eye.textContent = 'visibility_off'; }
+    else { inp.type = 'password'; eye.textContent = 'visibility'; }
+  }
+  function doLogin(){
+    document.getElementById('screen-login').classList.add('hidden');
+    document.getElementById('app-bar').classList.remove('hidden');
+    document.getElementById('bottom-nav').classList.remove('hidden');
+    goTo('dashboard');
+  }
+  function doLogout(){
+    toggleProfile();
+    document.getElementById('app-bar').classList.add('hidden');
+    document.getElementById('bottom-nav').classList.add('hidden');
+    document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
+    document.getElementById('screen-login').classList.remove('hidden');
+  }
+
+  /* ---------- NAV / DRAWER / PROFILE ---------- */
+  function goTo(page){
+    document.getElementById('profile-pop').classList.add('hidden');
+    document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
+    document.getElementById('screen-' + page).classList.remove('hidden');
+    document.getElementById('screen-' + page).scrollTop = 0;
+
+    const isSimikro = (page === 'simikro');
+    document.getElementById('app-bar').classList.toggle('hidden', isSimikro);
+
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.nav-center').forEach(el => el.classList.remove('active'));
+    const target = document.querySelector('[data-nav="'+page+'"]');
+    if(target) target.classList.add('active');
+
+    if(page === 'simikro'){ resetSimikro(); }
+  }
+
+  function toggleDrawer(){
+    document.getElementById('drawer').classList.toggle('open');
+    document.getElementById('drawer-overlay').classList.toggle('open');
+    document.getElementById('drawer-overlay').classList.toggle('hidden');
+  }
+  function drawerNav(page){ toggleDrawer(); goTo(page); }
+  function drawerToast(){ toggleDrawer(); showToast(); }
+  function showToast(){
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    clearTimeout(window._toastTimer);
+    window._toastTimer = setTimeout(()=> t.classList.remove('show'), 1800);
+  }
+  function toggleProfile(){
+    document.getElementById('profile-pop').classList.toggle('hidden');
+  }
+
+  /* ---------- SIMIKRO FLOW ---------- */
+  let currentProduk = '';       // kur | kupedes | amanah | kreasi_umi | kreasi_reguler | kreasi_multiguna
+  let currentLabel = '';
+  let formBackTarget = 'mikro-step-list';
+
+  const maxTenorMap = {
+    kreasi_umi: 36, kreasi_reguler: 60, kreasi_multiguna: 60,
+    kur: 36, kupedes: 60, amanah: 60
+  };
+
+  function mikroShow(stepId){
+    ['mikro-step-list','mikro-step-kreasi-sub','mikro-step-form','mikro-step-form-amanah','mikro-step-result'].forEach(id=>{
+      document.getElementById(id).classList.add('hidden');
+    });
+    document.getElementById(stepId).classList.remove('hidden');
+  }
+
+  function resetSimikro(){
+    mikroShow('mikro-step-list');
+    document.getElementById('nominal').value = '';
+    document.getElementById('harga-kendaraan').value = '';
+    document.getElementById('uang-muka').value = '';
+    document.getElementById('marhun-preview').textContent = "Marhun Bih (UP): Rp 0";
+  }
+
+  function selectProduk(p){
+    if(p === 'kreasi'){
+      mikroShow('mikro-step-kreasi-sub');
+      return;
+    }
+    if(p === 'amanah'){
+      currentProduk = 'amanah';
+      currentLabel = 'AMANAH';
+      document.getElementById('harga-kendaraan').value = '';
+      document.getElementById('uang-muka').value = '';
+      document.getElementById('marhun-preview').textContent = "Marhun Bih (UP): Rp 0";
+      mikroShow('mikro-step-form-amanah');
+      return;
+    }
+    currentProduk = p;
+    currentLabel = p.toUpperCase();
+    formBackTarget = 'mikro-step-list';
+    openForm();
+  }
+
+  function mikroBackFromResult(){
+    if(currentProduk === 'amanah'){
+      mikroShow('mikro-step-form-amanah');
+    } else {
+      mikroShow('mikro-step-form');
+    }
+  }
+
+  function syncMarhunPreview(){
+    const harga = parseInt(document.getElementById('harga-kendaraan').value.replace(/\D/g,'')) || 0;
+    const dp = parseInt(document.getElementById('uang-muka').value.replace(/\D/g,'')) || 0;
+    const marhun = Math.max(harga - dp, 0);
+    document.getElementById('marhun-preview').textContent = "Marhun Bih (UP): Rp " + fmt(marhun);
+  }
+
+  function selectSub(key, label){
+    currentProduk = key;
+    currentLabel = label;
+    formBackTarget = 'mikro-step-kreasi-sub';
+    openForm();
+  }
+
+  function mikroBackFromForm(){
+    mikroShow(formBackTarget);
+  }
+
+  function openForm(){
+    document.getElementById('form-title').textContent = currentLabel;
+    document.getElementById('nominal').value = '';
+    const label = document.getElementById('form-label');
+    const helper = document.getElementById('form-helper');
+    if(currentProduk === 'amanah'){
+      label.textContent = 'Uang Muka (DP)';
+      helper.textContent = 'Masukkan nominal uang muka / DP untuk pembiayaan AMANAH';
+    } else {
+      label.textContent = 'Uang Pinjaman';
+      helper.textContent = 'Masukkan nominal pinjaman yang diinginkan';
+    }
+    mikroShow('mikro-step-form');
+  }
+
+  function formatNominal(input){
+    let val = input.value.replace(/\D/g,'');
+    input.value = val ? new Intl.NumberFormat('id-ID').format(val) : '';
+  }
+
+  function fmt(n){ return new Intl.NumberFormat('id-ID').format(Math.round(n)); }
+
+  const RATE = 0.012; // flat rate per bulan (ilustratif)
+
+  function totalRepayment(pokok, tenorBulan){
+    return pokok * (1 + RATE * tenorBulan);
+  }
+
+  function submitSimulasi(){
+    const raw = document.getElementById('nominal').value.replace(/\D/g,'');
+    if(!raw || parseInt(raw) <= 0){
+      document.getElementById('nominal').style.outline = '2px solid #E5484D';
+      setTimeout(()=> document.getElementById('nominal').style.outline = '', 900);
+      return;
+    }
+    const nominal = parseInt(raw);
+    const maxTenor = maxTenorMap[currentProduk] || 36;
+
+    document.getElementById('result-title').textContent = currentLabel;
+    document.getElementById('result-generic').classList.remove('hidden');
+    document.getElementById('result-amanah').classList.add('hidden');
+    document.getElementById('result-nominal-box').textContent = 'Uang Pinjaman : Rp ' + fmt(nominal) + ',-';
+
+    buildBulananTable(nominal, maxTenor);
+    buildSekaliTable(nominal);
+    buildBerjangkaTable(nominal, maxTenor);
+
+    mikroShow('mikro-step-result');
+  }
+
+  /* ---------- AMANAH: Simulasi Pegadaian Amanah ---------- */
+  // Kalibrasi berdasarkan contoh "Simulasi Pegadaian Amanah Reguler Sepeda Motor":
+  // Marhun Bih 23.500.000, tenor 36 -> Mu'nah/Bln 344.799, Angsuran 957.400
+  const AMANAH_RATE_MUNAH = 0.014672;   // mu'nah/bln = marhun bih x rate (per bulan, flat)
+  const AMANAH_DISCOUNT   = 0.1167;     // diskon mu'nah rata-rata
+
+  function submitAmanah(){
+    const hargaRaw = document.getElementById('harga-kendaraan').value.replace(/\D/g,'');
+    const dpRaw = document.getElementById('uang-muka').value.replace(/\D/g,'');
+
+    if(!hargaRaw || parseInt(hargaRaw) <= 0){
+      document.getElementById('harga-kendaraan').style.outline = '2px solid #E5484D';
+      setTimeout(()=> document.getElementById('harga-kendaraan').style.outline = '', 900);
+      return;
+    }
+    if(!dpRaw || parseInt(dpRaw) <= 0){
+      document.getElementById('uang-muka').style.outline = '2px solid #E5484D';
+      setTimeout(()=> document.getElementById('uang-muka').style.outline = '', 900);
+      return;
+    }
+
+    const harga = parseInt(hargaRaw);
+    const dp = parseInt(dpRaw);
+    const marhun = Math.max(harga - dp, 0);
+
+    document.getElementById('result-title').textContent = 'AMANAH';
+    document.getElementById('result-generic').classList.add('hidden');
+    document.getElementById('result-amanah').classList.remove('hidden');
+
+    document.getElementById('am-harga-box').textContent = 'Harga Kendaraan : Rp ' + fmt(harga) + ',-';
+    document.getElementById('am-dp-box').textContent = 'Uang Muka : Rp ' + fmt(dp) + ',-';
+    document.getElementById('am-marhun-box').textContent = 'Marhun Bih (UP) : Rp ' + fmt(marhun) + ',-';
+
+    buildAmanahTable(marhun);
+
+    mikroShow('mikro-step-result');
+  }
+
+  function buildAmanahTable(marhun){
+    const tenors = [12,18,24,36];
+    let html = '<tr><th>JANGKA WAKTU</th><th>MU\'NAH/BLN</th><th>ANGSURAN</th></tr>';
+    tenors.forEach(t=>{
+      const munahBln = marhun * AMANAH_RATE_MUNAH;
+      const munahBersih = munahBln * (1 - AMANAH_DISCOUNT);
+      const pokokBln = marhun / t;
+      const angsuran = pokokBln + munahBersih;
+      html += `<tr><td class="jw">${t}</td><td>${fmt(munahBln)}</td><td>${fmt(angsuran)}</td></tr>`;
+    });
+    document.getElementById('table-amanah').innerHTML = html;
+  }
+
+  function buildBulananTable(pokok, maxTenor){
+    const tenors = [12,18,24,36,48,60];
+    let html = '<tr><th>JANGKA WAKTU</th><th>ANGSURAN</th></tr>';
+    tenors.forEach(t=>{
+      const within = t <= maxTenor;
+      const val = within ? fmt(totalRepayment(pokok,t)/t) : '';
+      html += `<tr><td class="jw">${t}</td><td class="${within?'':'dash'}">${within?val:'-'}</td></tr>`;
+    });
+    document.getElementById('table-bulanan').innerHTML = html;
+  }
+
+  function buildSekaliTable(pokok){
+    const tenors = [3,4,6];
+    let html = '<tr><th>JANGKA WAKTU</th><th>ANGSURAN</th></tr>';
+    tenors.forEach(t=>{
+      const val = fmt(totalRepayment(pokok,t));
+      html += `<tr><td class="jw">${t}</td><td>${val}</td></tr>`;
+    });
+    document.getElementById('table-sekali').innerHTML = html;
+  }
+
+  function buildBerjangkaTable(pokok, maxTenor){
+    const tenors = [12,18,24,36];
+    const periods = [3,4,6];
+    let html = '<tr><th>JANGKA WAKTU</th><th>3 BULANAN</th><th>4 BULANAN</th><th>6 BULANAN</th></tr>';
+    tenors.forEach(t=>{
+      html += `<tr><td class="jw">${t}</td>`;
+      periods.forEach(p=>{
+        const within = (t <= maxTenor) && (t % p === 0);
+        if(within){
+          const numPay = t / p;
+          const val = fmt(totalRepayment(pokok,t) / numPay);
+          html += `<td>${val}</td>`;
+        } else {
+          html += `<td class="dash">-</td>`;
+        }
+      });
+      html += '</tr>';
+    });
+    document.getElementById('table-berjangka').innerHTML = html;
+  }
+</script>
+</body>
+</html>
